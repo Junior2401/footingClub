@@ -1,0 +1,108 @@
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link bg-gradient-white">
+        <img src="{{ asset('dist/img/logo.png') }}" alt="Supe Market Logo" class="brand-image h-25 w-25">
+        <span class="brand-text font-weight-bold text-dark">Footing Club</span>
+    </a>
+
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      <div class="user-panel pt-3  pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">Alissou ALI</a>
+        </div>
+      </div>
+
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="true">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                    <li class="nav-item">
+                      <a href="#" class="nav-link {% if app.request.attributes.get( '_route' ) starts with 'dashboard' %}active{% endif %}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                          <p>
+                              Accueil
+                          </p>
+                      </a>
+                    </li>                    
+                    <li class="nav-item">
+                        <a href="#" class="nav-link {% if app.request.attributes.get( '_route' ) starts with 'licencies' %}active{% endif %}">
+                            <i class="nav-icon fas fa-solid fa-person-running text-teal"></i>
+                            <p>
+                                Licenciés
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link {% if app.request.attributes.get( '_route' ) starts with 'educateurs' %}active{% endif %}">
+                            <i class="nav-icon fas fa-solid fa-person-circle-check text-teal"></i>
+                            <p>
+                                Educateurs
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link {% if app.request.attributes.get( '_route' ) starts with 'contacts' %}active{% endif %}">
+                            <i class="nav-icon fas fa-solid fa-address-book text-teal"></i>
+                            <p>
+                                Contacts
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link {% if app.request.attributes.get( '_route' ) starts with 'categories' %}active{% endif %}">
+                            <i class="nav-icon fas fa-solid fa-layer-group text-teal"></i>
+                            <p>
+                                Catégories
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-header">E-mail Management</li>
+                    
+                    <li class="nav-item  {% if app.request.attributes.get( '_route' ) starts with 'email' %}menu-open{% endif %}">
+                        <a href="#" class="nav-link {% if app.request.attributes.get( '_route' ) starts with 'email' %}active{% endif %}">
+                            <i class="nav-icon fas fa-solid fa-screwdriver-wrench"></i>
+                            <p>
+                                Configurations
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link {% if app.request.attributes.get( '_route' ) starts with 'dashboard' %}active{% endif %}">
+                                    <i class="nav-icon fas fa-solid fa-envelope-open-text  text-fuchsia"></i>
+                                    <p>EmailEdu</p>
+                                </a>
+                                <a href="#" class="nav-link {% if app.request.attributes.get( '_route' ) starts with 'dashboard' %}active{% endif %}">
+                                  <i class="nav-icon fas fa-solid fa-truck-fast text-fuchsia"></i>
+                                  <p>EmailContact</p>
+                              </a>                                
+                            </li>
+                        </ul>
+                    </li>
+        </ul>
+      </nav>
+    
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
