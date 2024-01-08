@@ -37,7 +37,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                     <li class="nav-item">
-                      <a href="#" class="nav-link {% if app.request.attributes.get( '_route' ) starts with 'dashboard' %}active{% endif %}">
+                      <a href="{{ path('dashboard') }}" class="nav-link {% if app.request.attributes.get( '_route' ) starts with 'dashboard' %}active{% endif %}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                           <p>
                               Accueil
@@ -45,7 +45,7 @@
                       </a>
                     </li>                    
                     <li class="nav-item">
-                        <a href="#" class="nav-link {% if app.request.attributes.get( '_route' ) starts with 'licencies' %}active{% endif %}">
+                        <a href="{{ path('licencies') }}" class="nav-link {% if app.request.attributes.get( '_route' ) starts with 'licencies' %}active{% endif %}">
                             <i class="nav-icon fas fa-solid fa-person-running text-teal"></i>
                             <p>
                                 Licenciés

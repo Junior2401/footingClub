@@ -12,14 +12,7 @@
 
 
       <li class="nav-item dropdown">
-        <form method="POST" action="#">
-            <x-responsive-nav-link :href="route('logout')"
-                    onclick="event.preventDefault();
-                                this.closest('form').submit();" class="text-primary">
-                <i class="fa-solid fa-power-off text-danger"></i>
-                Déconnexion
-            </x-responsive-nav-link>
-        </form>
+        <a class="text-white btn btn-primary" href="#"><i class="fa-solid fa-power-off text-danger"></i> Déconnexion</a></li>
       </li>
   </ul>
 </nav>
