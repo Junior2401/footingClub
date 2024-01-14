@@ -19,25 +19,26 @@ class LicencieController extends AbstractController
         $categories = $connection->fetchAllAssociative('SELECT * FROM categories');
 
         $sql = '
-            SELECT * FROM licencies
-            WHERE categorie_id = :id
-            ORDER BY id DESC
+            SELECT * FROM licencies ORDER BY id DESC
         ';
+        $licencies = $connection->fetchAllAssociative($sql);
 
+        $req = 0;     
 
-        $resultSet = $connection->executeQuery($sql, ['id' => $id]);
-
-        $licencies = $resultSet->fetchAllAssociative();
-
-        $req = $id;       
-
-        if($id == null){
+        if($id != null){
             $sql = '
-                SELECT * FROM licencies ORDER BY id DESC
+                SELECT * FROM licencies
+                WHERE categorie_id = :id
+                ORDER BY id DESC
             ';
-            $licencies = $connection->fetchAllAssociative($sql);
 
-            $req = 0;
+
+            $resultSet = $connection->executeQuery($sql, ['id' => $id]);
+
+            $licencies = $resultSet->fetchAllAssociative();
+
+            $req = $id;  
+
         }
         
 

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Licenciés Footing Club{% endblock %}
+{% block title %}Contacts Footing Club{% endblock %}
 
 {% block body %}
     <div class="content-wrapper">
@@ -9,12 +9,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Liste des licenciés par catégorie</h1>
+                        <h1>Liste des Contacts par catégorie</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ path('dashboard') }}">Acceuil</a></li>
-                            <li class="breadcrumb-item active">Licenciés par catégories</li>
+                            <li class="breadcrumb-item active">Contacts par catégories</li>
                         </ol>
                     </div>
                 </div>
@@ -65,20 +65,22 @@
                                     <thead class="text-white text-center bg-gradient-gray-dark">
                                         <tr>
                                             <th>#</th>
-                                            <th>Licence</th>
                                             <th>Nom</th>
                                             <th>Prénom</th>
+                                            <th>Téléphone</th>
+                                            <th>E-mail</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% if licencies|length > 0 %}
+                                        {% if contacts|length > 0 %}
                                             {% set compteur = 1 %}
-                                            {% for licencie in licencies %}
+                                            {% for contact in contacts %}
                                                 <tr>
-                                                    <td width="50px" class="text-center">{{ compteur }}</td>
-                                                    <td width="150px" class="text-center">{{ licencie.licence }}</td>
-                                                    <td width="400px" class="pl-5">{{ licencie.nom }}</td>
-                                                    <td class="pl-5">{{ licencie.prenom }}</td>
+                                                    <td width="50px" class="pl-5">{{ compteur }}</td>
+                                                    <td width="200px" class="pl-5">{{ contact.nom }}</td>
+                                                    <td width="300px" class="pl-5">{{ contact.prenom }}</td>
+                                                    <td width="200px" class="pl-5">{{ contact.telephone }}</td>
+                                                    <td width="400px" class="pl-5">{{ contact.email }}</td>
                                                 </tr>
                                                 {% set compteur = compteur + 1 %}
                                             {% endfor %}
@@ -90,9 +92,10 @@
                                     </tbody>
                                     <tfoot  class="text-white text-center bg-gradient-gray-dark">
                                         <th>#</th>
-                                        <th>Licence</th>
                                         <th>Nom</th>
                                         <th>Prénom</th>
+                                        <th>Téléphone</th>
+                                        <th>E-mail</th>
                                     </tfoot>
                                 </table>
                             </div>
@@ -108,5 +111,5 @@
         </section>
         <!-- /.content -->
     </div>
-
 {% endblock %}
+

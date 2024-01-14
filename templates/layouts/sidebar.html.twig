@@ -53,52 +53,69 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link {% if app.request.attributes.get( '_route' ) starts with 'educateurs' %}active{% endif %}">
-                            <i class="nav-icon fas fa-solid fa-person-circle-check text-teal"></i>
+                        <a href="{{ path('educateurs') }}" class="nav-link {% if app.request.attributes.get( '_route' ) starts with 'educateurs' %}active{% endif %}">
+                            <i class="nav-icon fas fa-solid fa-address-book text-teal"></i>
                             <p>
                                 Educateurs
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link {% if app.request.attributes.get( '_route' ) starts with 'contacts' %}active{% endif %}">
-                            <i class="nav-icon fas fa-solid fa-address-book text-teal"></i>
-                            <p>
-                                Contacts
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link {% if app.request.attributes.get( '_route' ) starts with 'categories' %}active{% endif %}">
-                            <i class="nav-icon fas fa-solid fa-layer-group text-teal"></i>
-                            <p>
-                                Catégories
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-header">E-mail Management</li>
-                    
-                    <li class="nav-item  {% if app.request.attributes.get( '_route' ) starts with 'email' %}menu-open{% endif %}">
-                        <a href="#" class="nav-link {% if app.request.attributes.get( '_route' ) starts with 'email' %}active{% endif %}">
-                            <i class="nav-icon fas fa-solid fa-screwdriver-wrench"></i>
-                            <p>
-                                Configurations
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link {% if app.request.attributes.get( '_route' ) starts with 'dashboard' %}active{% endif %}">
-                                    <i class="nav-icon fas fa-solid fa-envelope-open-text  text-fuchsia"></i>
-                                    <p>EmailEdu</p>
-                                </a>
-                                <a href="#" class="nav-link {% if app.request.attributes.get( '_route' ) starts with 'dashboard' %}active{% endif %}">
-                                  <i class="nav-icon fas fa-solid fa-truck-fast text-fuchsia"></i>
-                                  <p>EmailContact</p>
-                              </a>                                
-                            </li>
-                        </ul>
-                    </li>
+                    <li class="nav-item  {% if app.request.attributes.get( '_route' )  in ['contacts', 'email_contacts'] %}menu-open{% endif %}">
+                      <a href="#" class="nav-link {% if app.request.attributes.get( '_route' )  in ['contacts', 'email_contacts'] %}active{% endif %}">
+                        <i class="nav-icon fas fa-solid fa-address-book text-teal"></i>
+                          <p>
+                              Contacts
+                              <i class="right fas fa-angle-left"></i>
+                          </p>
+                      </a>
+                      <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                              <a href="{{ path('contacts') }}" class="nav-link {% if app.request.attributes.get( '_route' ) in 'contacts' %}active{% endif %}">
+                                  <i class="nav-icon fa-regular fa-rectangle-list text-fuchsia"></i>
+                                  <p>Liste contacts</p>
+                              </a>
+                          </li>
+                      </ul>
+                      <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ path('email_contacts') }}" class="nav-link {% if app.request.attributes.get( '_route' ) starts with 'email_contacts'  %}active{% endif %}">
+                              <i class="nav-icon fas fa-solid fa-truck-fast text-fuchsia"></i>
+                                <p>Liste e-mail</p>
+                            </a>
+                        </li>
+                    </ul>                        
+                  </li>                    
+                  <li class="nav-item">
+                      <a href="#" class="nav-link {% if app.request.attributes.get( '_route' ) starts with 'categories' %}active{% endif %}">
+                          <i class="nav-icon fas fa-solid fa-layer-group text-teal"></i>
+                          <p>
+                              Catégories
+                          </p>
+                      </a>
+                  </li>
+                  <li class="nav-header">Gestion des e-mails</li>
+                  
+                  <li class="nav-item  {% if app.request.attributes.get( '_route' ) starts with 'manage_email' %}menu-open{% endif %}">
+                      <a href="#" class="nav-link {% if app.request.attributes.get( '_route' ) starts with 'manage_email' %}active{% endif %}">
+                          </i><i class="fa-solid fa-paper-plane"></i>
+                          <p>
+                              Boite d'envoi
+                              <i class="right fas fa-angle-left"></i>
+                          </p>
+                      </a>
+                      <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                              <a href="{{ path('manage_email_educateur') }}" class="nav-link {% if app.request.attributes.get( '_route' ) == 'manage_email_educateur' %}active{% endif %}">
+                                  <i class="nav-icon fas fa-solid fa-envelope-open-text  text-fuchsia"></i>
+                                  <p>Nouveau éducateur</p>
+                              </a>
+                              <a href="#" class="nav-link {% if app.request.attributes.get( '_route' ) starts with 'dashboard' %}active{% endif %}">
+                                <i class="nav-icon fas fa-solid fa-envelope-open text-fuchsia"></i>
+                                <p>Nouveau contact</p>
+                            </a>                                
+                          </li>
+                      </ul>
+                  </li>
         </ul>
       </nav>
     
