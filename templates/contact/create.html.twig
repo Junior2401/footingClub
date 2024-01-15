@@ -9,12 +9,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Nouveau e-mail éducateurs</h1>
+            <h1>Nouveau e-mail contacts</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ path('dashboard') }}">Accueil</a></li>
-              <li class="breadcrumb-item"><a href="{{ path('educateurs') }}">Liste des e-mails éducateurs</a></li>
+              <li class="breadcrumb-item"><a href="{{ path('email_contacts') }}">Liste des e-mails contacts</a></li>
               <li class="breadcrumb-item active">Nouveau</li>
             </ol>
           </div>
@@ -27,7 +27,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-3">
-            <a href="{{ path('educateurs') }}" class="btn btn-secondary btn-block mb-3">Retour</a>
+            <a href="{{ path('email_contacts') }}" class="btn btn-secondary btn-block mb-3">Retour</a>
 
             <div class="card">
               <div class="card-header">
@@ -48,11 +48,11 @@
               <div class="card-header">
                 <h3 class="card-title">Composer Nouveau Message</h3>
               </div>
-                <form method="post" action="{{ path('manage_email_educateur') }}">
+                <form method="post" action="{{ path('manage_email_contact') }}">
                     <div class="card-body">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <select class="select2  select2-purple" data-dropdown-css-class="select2-success" name="educateurIds[]" multiple="multiple" data-placeholder="A:" style="width: 100%;">
+                                <select class="select2  select2-purple" data-dropdown-css-class="select2-success" name="contactIds[]" multiple="multiple" data-placeholder="A:" style="width: 100%;">
                                     {% for result in results %}
                                         <option value="{{ result.id }}">{{ result.nom }} {{ result.prenom }} {{ result.email }}</option>
                                     {% endfor %}

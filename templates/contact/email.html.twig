@@ -24,7 +24,20 @@
         <!-- Main content -->
         <section class="content">
           <div class="row">
-            <div class="col-md-3">    
+            <div class="col-12">
+              {% for label, messages in app.flashes(['message', 'warning']) %}
+                  {% for message in messages %}
+                      <div class="alert alert-success alert-dismissible flash-{{ label }}">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h5><i class="icon fas fa-check"></i> Alert!</h5>                        
+                          {{ message }}
+                      </div>
+                  {% endfor %}
+              {% endfor %}
+            </div>            
+          </div>
+          <div class="row">
+            <div class="col-md-2">    
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">Dossiers</h3>
@@ -39,7 +52,7 @@
                   <ul class="nav nav-pills flex-column">
                     <li class="nav-item">
                       <a href="#" class="nav-link">
-                        <i class="far fa-envelope"></i> Envoyé
+                        <i class="far fa-envelope"></i> Boite d'envoi
                       </a>
                     </li>
                     </li>
@@ -49,83 +62,92 @@
               </div>
             </div>
             <!-- /.col -->
-            <div class="col-md-9">
-                <div class="card card-primary card-outline">
-                  <div class="card-header">
-                    <h3 class="card-title">Liste des e-mails contacts</h3>
-                    <!-- /.card-tools -->
-                  </div>
-                  <!-- /.card-header -->
-                  <div class="card-body p-0">
-                    <div class="mailbox-controls">
-                      <div class="float-right">
-                        1-50/200
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-default btn-sm">
-                            <i class="fas fa-chevron-left"></i>
-                          </button>
-                          <button type="button" class="btn btn-default btn-sm">
-                            <i class="fas fa-chevron-right"></i>
-                          </button>
-                        </div>
-                        <!-- /.btn-group -->
+            <div class="col-md-10">
+              <div class="card card-primary card-outline">
+                <div class="card-header">
+                  <h3 class="card-title">Liste des e-mails contacts</h3>
+                  <!-- /.card-tools -->
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body p-0">
+                  <div class="mailbox-controls">
+                    <div class="float-right">
+                      1-50/200
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-sm">
+                          <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm">
+                          <i class="fas fa-chevron-right"></i>
+                        </button>
                       </div>
-                      <!-- /.float-right -->
+                      <!-- /.btn-group -->
                     </div>
-                    <div class="table-responsive mailbox-messages">
-                      <table class="table table-hover table-striped">
-                        <tbody>
-                          {% if results|length > 0 %}
-                          {% set compteur = 1 %}
-                              {% for result in results %}                        
-                              <tr>
-                                  <td><a href="read-mail.html">{{ compteur }}</a></td>
-                                  <td class="mailbox-name"><a href="read-mail.html">{{ result.contact.nom }} {{ result.contact.prenom }}</a></td>
-                                  <td class="mailbox-subject"><b>AdminLTE 3.0 Issue</b>{{ result.email.objet }}
-                                  </td>
-                                  <td class="mailbox-subject"><b>AdminLTE 3.0 Issue</b>{{ result.email.message }}
-                                  </td>                                
-                                  <td class="mailbox-date">{{ result.email.dateEnvoi }}</td>
-                                  <td class="mailbox-delete">
-                                      <a href="button" class="btn btn-default btn-sm">
-                                          <i class="far fa-trash-alt"></i>
-                                      </a>
-                                  </td>
-                              </tr>
-                              {% set compteur = compteur + 1 %}
-                              {% endfor %}
-                          {% else %}
-                              <tr>
-                                  <td colspan="4" class="text-center">Aucun licencié trouvé.</td>
-                              </tr>
-                          {% endif %}                            
-                        </tbody>
-                      </table>
-                      <!-- /.table -->
-                    </div>
-                    <!-- /.mail-box-messages -->
+                    <!-- /.float-right -->
                   </div>
-                  <!-- /.card-body -->
-                  <div class="card-footer p-0">
-                    <div class="mailbox-controls">
-                      <div class="float-right">
-                        1-50/200
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-default btn-sm">
-                            <i class="fas fa-chevron-left"></i>
-                          </button>
-                          <button type="button" class="btn btn-default btn-sm">
-                            <i class="fas fa-chevron-right"></i>
-                          </button>
-                        </div>
-                        <!-- /.btn-group -->
+                  <div class="table-responsive mailbox-messages">
+                    <table class="table table-hover table-striped">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>Nom</th>
+                          <th>Objet</th>
+                          <th>Message</th>
+                          <th>Date d'envoi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% if results|length > 0 %}
+                        {% set compteur = 1 %}
+                            {% for result in results %}                        
+                            <tr>
+                                <td>{{ compteur }}</td>
+                                <td class="mailbox-name"><a href="{{ path('manage_email_show', {'id': result.id}) }}">{{ result.prenom }} {{ result.nom }}</a></td>
+                                <td class="mailbox-subject">{{ result.objet }}
+                                </td>
+                                <td class="mailbox-subject">{{ result.message | slice(0, 50) }}
+                                </td>                                
+                                <td class="mailbox-date">{{ result.dateEnvoi|date('d-m-Y H:i:s') }}</td>
+                                <td class="mailbox-delete">
+                                    <a href="{{ path('manage_email_delete', {'id': result.id}) }}" class="btn btn-default btn-sm">
+                                        <i class="far fa-trash-alt"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% set compteur = compteur + 1 %}
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="5" class="text-center">Aucun licencié trouvé.</td>
+                            </tr>
+                        {% endif %}                            
+                      </tbody>
+                    </table>
+                    <!-- /.table -->
+                  </div>
+                  <!-- /.mail-box-messages -->
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer p-0">
+                  <div class="mailbox-controls">
+                    <div class="float-right">
+                      1-50/200
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-sm">
+                          <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm">
+                          <i class="fas fa-chevron-right"></i>
+                        </button>
                       </div>
-                      <!-- /.float-right -->
+                      <!-- /.btn-group -->
                     </div>
+                    <!-- /.float-right -->
                   </div>
                 </div>
-                <!-- /.card -->
               </div>
+              <!-- /.card -->
+            </div>
           </div>
           <!-- /.row -->
         </section>
@@ -167,6 +189,7 @@
       </script>
 
 
+    
     {% endblock %}
 
 {% endblock %}

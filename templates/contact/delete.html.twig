@@ -14,7 +14,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ path('dashboard') }}">Acceuil</a></li>
-                            <li class="breadcrumb-item"><a href="{{ path('educateurs') }}">Liste des e-mails</a></li>
+                            <li class="breadcrumb-item"><a href="{{ path('email_contacts') }}">Liste des e-mails</a></li>
                             <li class="breadcrumb-item active">Details des e-mails éducateurs</li>
                         </ol>
                     </div>
@@ -39,10 +39,10 @@
           </div>
           <div class="row">
             <div class="col-md-2">   
-              <a href="{{ path('educateurs') }}" class="btn btn-primary btn-block mb-3">Retour</a>              
+              <a href="{{ path('email_contacts') }}" class="btn btn-primary btn-block mb-3">Retour</a>              
               <div class="card">                
                 <div class="card-header">
-                  <h3 class="card-title">Detail e-mail</h3>
+                  <h3 class="card-title">Suppression d'e-mail</h3>
     
                   <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -54,7 +54,7 @@
                   <ul class="nav nav-pills flex-column">
                     <li class="nav-item">
                       <a href="#" class="nav-link">
-                        <i class="fa-solid fa-envelopes-bulk"></i> Lecture d'e-mail
+                        <i class="fa-solid fa-envelopes-bulk"></i> Suppression d'e-mail
                       </a>
                     </li>
                     </li>
@@ -65,7 +65,7 @@
             </div>
             <!-- /.col -->
             <div class="col-md-10">
-              <div class="card card-primary card-outline">
+              <div class="card card-danger bg-warning card-outline">
                 <div class="card-header">
                   <h3 class="card-title">Detail d'e-mail</h3>
                   <!-- /.card-tools -->
@@ -83,11 +83,7 @@
                   </div>
                   <!-- /.mailbox-controls -->
                   <div class="mailbox-read-message">
-                    <p>Bonjour {{ result.prenom }},</p>
-    
-                    <p>{{ result.message }}</p>
-    
-                    <p>Cordialement, <br>{{ result.prenom }}</p>
+                      <b>Êtes vous sûr de vouloir supprimer le présent e-mail?</b>
                   </div>
                   <!-- /.mailbox-read-message -->
                 </div>
@@ -96,6 +92,15 @@
                 <!-- /.card-body -->
                 <div class="card-footer p-0">
                   <div class="mailbox-controls">
+                    <form  method="POST" action="{{ path('manage_email_delete', {'id': result.id}) }}">
+                      <div class="float-right">
+                        <button type="submit" class="btn btn-danger btn-block">
+                            Supprimer
+                            <i class="fa-solid fa-trash-can text-white"></i>
+                        </button> 
+                        <!-- /.btn-group -->
+                      </div>
+                    </form>
                     <!-- /.float-right -->
                   </div>
                 </div>
